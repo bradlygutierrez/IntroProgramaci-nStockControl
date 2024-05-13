@@ -1,1 +1,1 @@
-# IntroProgramaci-nStockControl
+# Introducción a la programación
