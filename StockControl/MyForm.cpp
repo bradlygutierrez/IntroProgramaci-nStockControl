@@ -7,4 +7,4 @@ int main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	StockControl::MyForm form;
 	Application::Run(% form);
-
+}

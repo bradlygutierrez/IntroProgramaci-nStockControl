@@ -34,13 +34,22 @@ namespace StockControl {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ LblUsuario;
-	private: System::Windows::Forms::TextBox^ TxtUsuario;
-	private: System::Windows::Forms::Label^ LblContraseña;
-	private: System::Windows::Forms::TextBox^ TxtContraseña;
-	private: System::Windows::Forms::Button^ button1;
+
+	protected:
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::LinkLabel^ linkLabel1;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::TextBox^ TxtContraseña;
+	private: System::Windows::Forms::TextBox^ TxtUsuario;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Button^ button2;
+
+
+
+
+
+
+
 
 
 	protected:
@@ -51,7 +60,7 @@ namespace StockControl {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -60,60 +69,23 @@ namespace StockControl {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->LblUsuario = (gcnew System::Windows::Forms::Label());
-			this->TxtUsuario = (gcnew System::Windows::Forms::TextBox());
-			this->LblContraseña = (gcnew System::Windows::Forms::Label());
-			this->TxtContraseña = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->TxtContraseña = (gcnew System::Windows::Forms::TextBox());
+			this->TxtUsuario = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// LblUsuario
+			// label1
 			// 
-			this->LblUsuario->AutoSize = true;
-			this->LblUsuario->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->LblUsuario->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
-				static_cast<System::Int32>(static_cast<System::Byte>(112)));
-			this->LblUsuario->Location = System::Drawing::Point(35, 33);
-			this->LblUsuario->Name = L"LblUsuario";
-			this->LblUsuario->Size = System::Drawing::Size(103, 29);
-			this->LblUsuario->TabIndex = 0;
-			this->LblUsuario->Text = L"Usuario";
-			this->LblUsuario->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
-			// 
-			// TxtUsuario
-			// 
-			this->TxtUsuario->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->TxtUsuario->Location = System::Drawing::Point(40, 81);
-			this->TxtUsuario->Name = L"TxtUsuario";
-			this->TxtUsuario->Size = System::Drawing::Size(318, 26);
-			this->TxtUsuario->TabIndex = 1;
-			// 
-			// LblContraseña
-			// 
-			this->LblContraseña->AutoSize = true;
-			this->LblContraseña->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->LblContraseña->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
-				static_cast<System::Int32>(static_cast<System::Byte>(112)));
-			this->LblContraseña->Location = System::Drawing::Point(40, 146);
-			this->LblContraseña->Name = L"LblContraseña";
-			this->LblContraseña->Size = System::Drawing::Size(146, 29);
-			this->LblContraseña->TabIndex = 2;
-			this->LblContraseña->Text = L"Contraseña";
-			this->LblContraseña->Click += gcnew System::EventHandler(this, &MyForm::label1_Click_1);
-			// 
-			// TxtContraseña
-			// 
-			this->TxtContraseña->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->TxtContraseña->Location = System::Drawing::Point(45, 202);
-			this->TxtContraseña->Name = L"TxtContraseña";
-			this->TxtContraseña->Size = System::Drawing::Size(313, 26);
-			this->TxtContraseña->TabIndex = 3;
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(98, 336);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(183, 16);
+			this->label1->TabIndex = 10;
+			this->label1->Text = L"¿No tiene cuenta\? Registrese";
 			// 
 			// button1
 			// 
@@ -122,44 +94,74 @@ namespace StockControl {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button1->Location = System::Drawing::Point(115, 277);
+			this->button1->Location = System::Drawing::Point(119, 277);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(175, 46);
-			this->button1->TabIndex = 4;
+			this->button1->TabIndex = 9;
 			this->button1->Text = L"Iniciar Sesión";
 			this->button1->UseVisualStyleBackColor = false;
 			// 
-			// label1
+			// TxtContraseña
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(94, 336);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(183, 16);
-			this->label1->TabIndex = 5;
-			this->label1->Text = L"¿No tiene cuenta\? Registrese";
+			this->TxtContraseña->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->TxtContraseña->Location = System::Drawing::Point(49, 202);
+			this->TxtContraseña->Name = L"TxtContraseña";
+			this->TxtContraseña->Size = System::Drawing::Size(313, 26);
+			this->TxtContraseña->TabIndex = 8;
 			// 
-			// linkLabel1
+			// TxtUsuario
 			// 
-			this->linkLabel1->AutoSize = true;
-			this->linkLabel1->Location = System::Drawing::Point(273, 336);
-			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(33, 16);
-			this->linkLabel1->TabIndex = 6;
-			this->linkLabel1->TabStop = true;
-			this->linkLabel1->Text = L"aquí";
+			this->TxtUsuario->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->TxtUsuario->Location = System::Drawing::Point(44, 81);
+			this->TxtUsuario->Name = L"TxtUsuario";
+			this->TxtUsuario->Size = System::Drawing::Size(318, 26);
+			this->TxtUsuario->TabIndex = 7;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(44, 53);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(87, 25);
+			this->label2->TabIndex = 12;
+			this->label2->Text = L"Nombre";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(44, 174);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(124, 25);
+			this->label3->TabIndex = 13;
+			this->label3->Text = L"Contraseña";
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(149, 381);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(108, 23);
+			this->button2->TabIndex = 14;
+			this->button2->Text = L"Registrarse";
+			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(407, 433);
-			this->Controls->Add(this->linkLabel1);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->TxtContraseña);
-			this->Controls->Add(this->LblContraseña);
 			this->Controls->Add(this->TxtUsuario);
-			this->Controls->Add(this->LblUsuario);
 			this->Name = L"MyForm";
 			this->Text = L"Inicio de Sesión";
 			this->ResumeLayout(false);
@@ -167,4 +169,5 @@ namespace StockControl {
 
 		}
 
+	};
 }
