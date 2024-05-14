@@ -1,0 +1,2 @@
+#include "frmEntrada.h"
+

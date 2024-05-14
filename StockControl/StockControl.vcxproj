@@ -120,15 +120,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="frmEntrada.cpp" />
     <ClCompile Include="frmMenu.cpp" />
     <ClCompile Include="frmProductoh.cpp" />
+    <ClCompile Include="frmSalida1.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="frmEntrada.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmMenu.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmProductoh.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmSalida1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyForm.h">
@@ -136,8 +144,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmEntrada.resx">
+      <DependentUpon>frmEntrada.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProductoh.resx">
       <DependentUpon>frmProductoh.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalida1.resx">
+      <DependentUpon>frmSalida1.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
