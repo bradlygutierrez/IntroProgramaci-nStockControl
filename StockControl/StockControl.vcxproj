@@ -121,13 +121,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="frmEntrada.cpp" />
+    <ClCompile Include="frmLogin.cpp" />
     <ClCompile Include="frmMenu.cpp" />
     <ClCompile Include="frmProductoh.cpp" />
+    <ClCompile Include="frmRegistro.cpp" />
     <ClCompile Include="frmSalida1.cpp" />
+    <ClCompile Include="frmUsuario.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmEntrada.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmLogin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmMenu.h">
@@ -136,25 +142,44 @@
     <ClInclude Include="frmProductoh.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="frmRegistro.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmSalida1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmUsuario.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmEntrada.resx">
       <DependentUpon>frmEntrada.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProductoh.resx">
       <DependentUpon>frmProductoh.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistro.resx">
+      <DependentUpon>frmRegistro.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSalida1.resx">
       <DependentUpon>frmSalida1.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuario.resx">
+      <DependentUpon>frmUsuario.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
