@@ -1,5 +1,5 @@
 # Introducción a la programación
 # Integrantes 
-# Jose 
-# Josué 
-# Bradly 
+# Jose Zapata
+# Josué Sotelo
+# Bradly Gutierrez
