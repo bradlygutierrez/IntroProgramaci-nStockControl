@@ -148,8 +148,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCategoria.resx">
+      <DependentUpon>frmCategoria.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEntrada.resx">
       <DependentUpon>frmEntrada.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenu.resx">
+      <DependentUpon>frmMenu.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductoh.resx">
       <DependentUpon>frmProductoh.h</DependentUpon>
