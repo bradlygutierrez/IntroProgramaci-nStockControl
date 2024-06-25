@@ -1,0 +1,10 @@
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.vcxproj.AssemblyReference.cache
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.Categoría.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.Entrada.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.Login.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.MenuMain.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.Producto.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.Register.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.Salida.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.Usuario.resources
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\StockControl\x64\Debug\StockControl.vcxproj.GenerateResource.cache
