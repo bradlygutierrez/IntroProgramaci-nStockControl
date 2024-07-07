@@ -1,6 +1,10 @@
 #pragma once
+#include "Connection.cpp"
 #include "MenuMain.h"
 #include "Register.h"
+#include "User.h"
+
+
 
 namespace StockControl {
 
@@ -10,6 +14,7 @@ namespace StockControl {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Data::SqlClient;
 
 	/// <summary>
 	/// Summary for Login
@@ -161,10 +166,48 @@ namespace StockControl {
 
 		}
 #pragma endregion
+	public: User^ user = nullptr; 
+
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Hide();
 		MenuMain^ menuu = gcnew MenuMain();
-		menuu->Show();
+		
+
+		String^ username = this->textBox1->Text; 
+		String^ password = this->textBox2->Text;
+
+		if (username->Length == 0 || password->Length == 0) {
+			MessageBox::Show("Please enter email and password.",
+			"Email or password are empty", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		}
+
+		try {
+			String^ connString = "Server=BDStock.mssql.somee.com;Database=BDStock;User Id=Shiroushi_SQLLogin_1;Password=kkf6dvu3nd;";
+			SqlConnection sqlConn(connString);
+			sqlConn.Open();
+			MessageBox::Show("Opened Connection.");
+
+			String^ sqlQuery = "SELECT * FROM [BDStock].[dbo].[User] WHERE Username = @username AND Userpassword = @password";
+			SqlCommand command(sqlQuery, % sqlConn);
+			command.Parameters->AddWithValue("@username", username);
+			command.Parameters->AddWithValue("@password", password);
+
+			SqlDataReader^ reader = command.ExecuteReader();
+			if (reader->Read()) {
+				menuu->Show();
+				//user->setUsername(reader->GetString(1));
+				//user->setUseremail(reader->GetString(2));
+				//user->setUserpassword(reader->GetString(3));
+			}
+			else {
+				MessageBox::Show("Email or password incorrect.",
+					"Email or password error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show("Failed to connect to database.",
+				"Database Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		}
+
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
