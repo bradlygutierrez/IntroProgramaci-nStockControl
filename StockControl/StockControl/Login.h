@@ -1,5 +1,5 @@
 #pragma once
-#include "Connection.cpp"
+
 #include "MenuMain.h"
 #include "Register.h"
 #include "User.h"
@@ -194,6 +194,7 @@ namespace StockControl {
 			SqlDataReader^ reader = command.ExecuteReader();
 			if (reader->Read()) {
 				menuu->Show();
+				this->Hide();
 				//user->setUsername(reader->GetString(1));
 				//user->setUseremail(reader->GetString(2));
 				//user->setUserpassword(reader->GetString(3));
