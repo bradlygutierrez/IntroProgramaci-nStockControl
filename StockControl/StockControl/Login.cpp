@@ -8,4 +8,14 @@ int main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	StockControl::Login login;
 	Application::Run(% login);
+
+	User^ user = login.user;
+
+	if(user != nullptr){
+		printf("Exito");
+	}
+	else
+	{
+		printf("no exito");
+	}
 }
