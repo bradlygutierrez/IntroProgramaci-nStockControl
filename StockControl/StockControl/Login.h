@@ -3,6 +3,7 @@
 #include "MenuMain.h"
 #include "Register.h"
 #include "User.h"
+#include "Connection.h"
 
 
 
@@ -108,6 +109,7 @@ namespace StockControl {
 				static_cast<System::Int32>(static_cast<System::Byte>(112)));
 			this->textBox2->Location = System::Drawing::Point(364, 332);
 			this->textBox2->Name = L"textBox2";
+			this->textBox2->PasswordChar = '*';
 			this->textBox2->Size = System::Drawing::Size(381, 26);
 			this->textBox2->TabIndex = 70;
 			// 
@@ -166,7 +168,7 @@ namespace StockControl {
 
 		}
 #pragma endregion
-	public: User^ user = nullptr; 
+	public: User^ user;
 
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		MenuMain^ menuu = gcnew MenuMain();
@@ -180,24 +182,16 @@ namespace StockControl {
 			"Email or password are empty", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 
+
 		try {
 			String^ connString = "Server=BDStock.mssql.somee.com;Database=BDStock;User Id=Shiroushi_SQLLogin_1;Password=kkf6dvu3nd;";
-			SqlConnection sqlConn(connString);
-			sqlConn.Open();
-			MessageBox::Show("Opened Connection.");
-
+			DatabaseManager^ dbManager = gcnew DatabaseManager(connString);
 			String^ sqlQuery = "SELECT * FROM [BDStock].[dbo].[User] WHERE Username = @username AND Userpassword = @password";
-			SqlCommand command(sqlQuery, % sqlConn);
-			command.Parameters->AddWithValue("@username", username);
-			command.Parameters->AddWithValue("@password", password);
 
-			SqlDataReader^ reader = command.ExecuteReader();
-			if (reader->Read()) {
+			if (dbManager->ExecuteQueryLogin(sqlQuery, username, password)) {
 				menuu->Show();
 				this->Hide();
-				//user->setUsername(reader->GetString(1));
-				//user->setUseremail(reader->GetString(2));
-				//user->setUserpassword(reader->GetString(3));
+
 			}
 			else {
 				MessageBox::Show("Email or password incorrect.",

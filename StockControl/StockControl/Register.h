@@ -1,5 +1,6 @@
 #pragma once
 #include "MenuMain.h"
+#include "Connection.h"
 
 namespace StockControl {
 
@@ -36,14 +37,20 @@ namespace StockControl {
 			}
 		}
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::TextBox^ tbPassword2;
 	protected:
 
-	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::TextBox^ textBox1;
+
+	private: System::Windows::Forms::TextBox^ tbPassword;
+
+	private: System::Windows::Forms::TextBox^ tbUsername;
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::TextBox^ tbEmail;
+
 
 	private:
 		/// <summary>
@@ -59,12 +66,14 @@ namespace StockControl {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->tbPassword2 = (gcnew System::Windows::Forms::TextBox());
+			this->tbPassword = (gcnew System::Windows::Forms::TextBox());
+			this->tbUsername = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->tbEmail = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -73,7 +82,7 @@ namespace StockControl {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::Black;
-			this->button1->Location = System::Drawing::Point(468, 468);
+			this->button1->Location = System::Drawing::Point(456, 567);
 			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(199, 52);
@@ -82,38 +91,40 @@ namespace StockControl {
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &Register::button1_Click);
 			// 
-			// textBox3
+			// tbPassword2
 			// 
-			this->textBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tbPassword2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
+			this->tbPassword2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
 				static_cast<System::Int32>(static_cast<System::Byte>(112)));
-			this->textBox3->Location = System::Drawing::Point(376, 390);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(381, 26);
-			this->textBox3->TabIndex = 70;
+			this->tbPassword2->Location = System::Drawing::Point(376, 510);
+			this->tbPassword2->Name = L"tbPassword2";
+			this->tbPassword2->PasswordChar = '*';
+			this->tbPassword2->Size = System::Drawing::Size(381, 26);
+			this->tbPassword2->TabIndex = 70;
 			// 
-			// textBox2
+			// tbPassword
 			// 
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tbPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
+			this->tbPassword->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
 				static_cast<System::Int32>(static_cast<System::Byte>(112)));
-			this->textBox2->Location = System::Drawing::Point(376, 281);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(381, 26);
-			this->textBox2->TabIndex = 69;
+			this->tbPassword->Location = System::Drawing::Point(376, 401);
+			this->tbPassword->Name = L"tbPassword";
+			this->tbPassword->PasswordChar = '*';
+			this->tbPassword->Size = System::Drawing::Size(381, 26);
+			this->tbPassword->TabIndex = 69;
 			// 
-			// textBox1
+			// tbUsername
 			// 
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tbUsername->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
+			this->tbUsername->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
 				static_cast<System::Int32>(static_cast<System::Byte>(112)));
-			this->textBox1->Location = System::Drawing::Point(376, 179);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(381, 26);
-			this->textBox1->TabIndex = 68;
+			this->tbUsername->Location = System::Drawing::Point(376, 179);
+			this->tbUsername->Name = L"tbUsername";
+			this->tbUsername->Size = System::Drawing::Size(381, 26);
+			this->tbUsername->TabIndex = 68;
 			// 
 			// label3
 			// 
@@ -122,7 +133,7 @@ namespace StockControl {
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
 				static_cast<System::Int32>(static_cast<System::Byte>(112)));
-			this->label3->Location = System::Drawing::Point(371, 329);
+			this->label3->Location = System::Drawing::Point(371, 449);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(239, 31);
 			this->label3->TabIndex = 67;
@@ -135,7 +146,7 @@ namespace StockControl {
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
 				static_cast<System::Int32>(static_cast<System::Byte>(112)));
-			this->label2->Location = System::Drawing::Point(371, 230);
+			this->label2->Location = System::Drawing::Point(371, 350);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(131, 31);
 			this->label2->TabIndex = 66;
@@ -154,15 +165,41 @@ namespace StockControl {
 			this->label1->TabIndex = 65;
 			this->label1->Text = L"Nombre de Usuario";
 			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
+				static_cast<System::Int32>(static_cast<System::Byte>(112)));
+			this->label4->Location = System::Drawing::Point(371, 226);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(86, 31);
+			this->label4->TabIndex = 73;
+			this->label4->Text = L"Correo";
+			// 
+			// tbEmail
+			// 
+			this->tbEmail->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tbEmail->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
+				static_cast<System::Int32>(static_cast<System::Byte>(112)));
+			this->tbEmail->Location = System::Drawing::Point(376, 291);
+			this->tbEmail->Name = L"tbEmail";
+			this->tbEmail->Size = System::Drawing::Size(381, 26);
+			this->tbEmail->TabIndex = 74;
+			// 
 			// Register
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1098, 667);
+			this->Controls->Add(this->tbEmail);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->tbPassword2);
+			this->Controls->Add(this->tbPassword);
+			this->Controls->Add(this->tbUsername);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -175,10 +212,35 @@ namespace StockControl {
 #pragma endregion
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		MessageBox::Show("Felicidades, se ha registrado correctamente");
-		this->Close();
-		MenuMain^ menuu = gcnew MenuMain();
-		menuu->ShowDialog();
+		String^ connString = "Server=BDStock.mssql.somee.com;Database=BDStock;User Id=Shiroushi_SQLLogin_1;Password=kkf6dvu3nd;";
+		DatabaseManager^ dbManager = gcnew DatabaseManager(connString);
+
+		String^ username = this->tbUsername->Text;
+		String^ useremail = this->tbEmail->Text;
+		String^ password = this->tbPassword->Text;
+		String^ passwordConfirmation = this->tbPassword2->Text;
+
+		if (password == passwordConfirmation) {
+			if (password->Length != 0 && passwordConfirmation->Length != 0 && useremail->Length != 0 && username->Length != 0) {
+				if (dbManager->ExecuteQueryRegister(username, useremail, password)) {
+					// If the registration is successful, you can proceed with other actions
+					this->Close();
+					MenuMain^ menuu = gcnew MenuMain();
+					menuu->ShowDialog();
+				}
+			}
+			else {
+				MessageBox::Show("fields empty, please, try again", "Registration Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+
+			}
+		}
+		else
+		{
+			MessageBox::Show("Passwords are different, please, try again", "Registration Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		}
+
+		
+		
 	}
 };
 }
