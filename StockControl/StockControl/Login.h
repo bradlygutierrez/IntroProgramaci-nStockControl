@@ -163,6 +163,7 @@ namespace StockControl {
 			this->Controls->Add(this->label1);
 			this->Name = L"Login";
 			this->Text = L"Login";
+			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -187,8 +188,11 @@ namespace StockControl {
 			String^ connString = "Server=BDStock.mssql.somee.com;Database=BDStock;User Id=Shiroushi_SQLLogin_1;Password=kkf6dvu3nd;";
 			DatabaseManager^ dbManager = gcnew DatabaseManager(connString);
 			String^ sqlQuery = "SELECT * FROM [BDStock].[dbo].[User] WHERE Username = @username AND Userpassword = @password";
+			User^ loggedInUser = dbManager->ExecuteQueryLogin(sqlQuery, username, password);
 
-			if (dbManager->ExecuteQueryLogin(sqlQuery, username, password)) {
+
+			if (loggedInUser != nullptr) {
+				MessageBox::Show("ID: " + loggedInUser->Id);
 				menuu->Show();
 				this->Hide();
 
@@ -209,5 +213,7 @@ namespace StockControl {
 		Register^ registro = gcnew Register();
 		registro->Show();
 	}
+private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

@@ -1,47 +1,35 @@
 #pragma once
-#include <string>
+
 using namespace System;
 
-public ref class User
+ref class User
 {
+public:
+    User(int id, String^ username, String^ email, String^ password);
+
+    property int Id {
+        int get() { return id; }
+        void set(int value) { id = value; }
+    }
+
+    property String^ Username {
+        String^ get() { return username; }
+        void set(String^ value) { username = value; }
+    }
+
+    property String^ Email {
+        String^ get() { return email; }
+        void set(String^ value) { email = value; }
+    }
+
+    property String^ Password {
+        String^ get() { return password; }
+        void set(String^ value) { password = value; }
+    }
+
 private:
     int id;
     String^ username;
-    String^ useremail;
-    String^ userpassword;
-
-public:
-    User(int id, String^ username, String^ useremail, String^ userpassword) : id(id), username(username), useremail(useremail), userpassword(userpassword)
-    {
-        // Additional initialization if needed
-    };
-
-    // Getter methods
-    int getUserId() {
-        return 0;
-    };
-    String^ getUsername()
-    {
-        return username;
-    };
-    String^ getUseremail() {
-        return useremail;
-    };
-    String^ getUserPassword() {
-        return userpassword;
-    };
-
-    // Setter methods
-    
-    void setUsername(String^ us) {
-        username = us;
-    };
-
-    void setUseremail(String^ useremail) {
-        this->useremail = useremail;
-    };
-
-    void setUserpassword(String^ userpassword) {
-        this->userpassword = userpassword;
-    };
+    String^ email;
+    String^ password;
 };

@@ -1,4 +1,5 @@
 #include "Connection.h"
+#include "User.h"
 
 DatabaseManager::DatabaseManager(String^ connectionString) {
     connString = connectionString;
@@ -21,10 +22,10 @@ void DatabaseManager::CloseConnection() {
     }
 }
 
-bool DatabaseManager::ExecuteQueryLogin(String^ query, String^ username, String^ password) {
+User^ DatabaseManager::ExecuteQueryLogin(String^ query, String^ username, String^ password) {
     OpenConnection();
 
-    bool result = false;
+    User^ user = nullptr;
 
     try {
         SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
@@ -33,7 +34,9 @@ bool DatabaseManager::ExecuteQueryLogin(String^ query, String^ username, String^
 
         SqlDataReader^ reader = command->ExecuteReader();
         if (reader->Read()) {
-            result = true;
+            int id = Convert::ToInt32(reader["UserID"]);
+            String^ email = reader["Useremail"]->ToString();
+            user = gcnew User(id, username, email, password);
         }
         else {
             MessageBox::Show("Email or password incorrect.", "Email or password error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
@@ -46,7 +49,7 @@ bool DatabaseManager::ExecuteQueryLogin(String^ query, String^ username, String^
     }
 
     CloseConnection();
-    return result;
+    return user;
 }
 
 bool DatabaseManager::ExecuteQueryRegister(String^ username, String^ useremail, String^ password) {
@@ -73,7 +76,153 @@ bool DatabaseManager::ExecuteQueryRegister(String^ username, String^ useremail, 
     catch (Exception^ e) {
         MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
     }
+    return result;
+}
+
+DataTable^ DatabaseManager::SelectAllCategories() {
+    OpenConnection();
+    DataTable^ dataTable = gcnew DataTable();
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[Category]";
+        SqlDataAdapter^ adapter = gcnew SqlDataAdapter(query, sqlConn);
+        adapter->Fill(dataTable);
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
 
     CloseConnection();
-    return result;
+    return dataTable;
+}
+
+DataTable^ DatabaseManager::SearchCategories(String^ searchQuery) {
+    OpenConnection();
+    DataTable^ dataTable = gcnew DataTable();
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[Category] WHERE Productdescription LIKE '%' + @search + '%' OR Producttype LIKE '%' + @search + '%'";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@search", searchQuery);
+
+        SqlDataAdapter^ adapter = gcnew SqlDataAdapter(command);
+        adapter->Fill(dataTable);
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return dataTable;
+}
+
+Category^ DatabaseManager::GetCategoryById(int categoryId) {
+    OpenConnection();
+    Category^ category = nullptr;
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[Category] WHERE CategoryID = @categoryId";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@categoryId", categoryId);
+
+        SqlDataReader^ reader = command->ExecuteReader();
+        if (reader->Read()) {
+            int id = Convert::ToInt32(reader["CategoryID"]);
+            String^ desc = safe_cast<String^>(reader["Productdescription"]);
+            String^ type = safe_cast<String^>(reader["Producttype"]);
+            String^ size = safe_cast<String^>(reader["Productsize"]);
+            category = gcnew Category(id, desc, type, size);
+        }
+
+        reader->Close();
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return category;
+}
+
+bool DatabaseManager::CreateNewCategory(String^ productDescription, String^ productType, String^ productSize) {
+    OpenConnection();
+
+    try {
+        String^ query = "INSERT INTO [Category] (Productdescription, Producttype, Productsize) VALUES (@productDescription, @productType, @productSize)";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@productDescription", productDescription);
+        command->Parameters->AddWithValue("@productType", productType);
+        command->Parameters->AddWithValue("@productSize", productSize);
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("Failed to create category.", "Create Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
+}
+
+bool DatabaseManager::DeleteCategory(int categoryID) {
+    OpenConnection();
+
+    try {
+        String^ query = "DELETE FROM [BDStock].[dbo].[Category] WHERE CategoryID = @categoryID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@categoryID", categoryID);
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("Category not found or failed to delete.", "Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
+}
+
+bool DatabaseManager::EditCategory(int categoryID, String^ productDescription, String^ productType, String^ productSize) {
+    OpenConnection();
+
+    try {
+        String^ query = "UPDATE [Category] SET Productdescription = @productDescription, Producttype = @productType, Productsize = @productSize WHERE CategoryID = @categoryID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@categoryID", categoryID);
+        command->Parameters->AddWithValue("@productDescription", productDescription);
+        command->Parameters->AddWithValue("@productType", productType);
+        command->Parameters->AddWithValue("@productSize", productSize);
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("Category not found or failed to update.", "Edit Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
 }
