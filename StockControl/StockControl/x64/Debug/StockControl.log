@@ -1,6 +1,15 @@
-﻿  Login.cpp
+﻿  Categoría.cpp
+  Login.cpp
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Login.h(172,20): warning C4677: 'user': signature of non-private member contains assembly private type 'User'
+  (compiling source file 'Login.cpp')
+  D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\User.h(5,11):
+  see declaration of 'User'
+  
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Login.h(205,21): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'Login.cpp')
+  
   MenuMain.cpp
   Register.cpp
   Generating Code...
-  Categoría.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  StockControl.vcxproj -> D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\StockControl\x64\Debug\StockControl.exe
+  Category.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  StockControl.vcxproj -> D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\x64\Debug\StockControl.exe

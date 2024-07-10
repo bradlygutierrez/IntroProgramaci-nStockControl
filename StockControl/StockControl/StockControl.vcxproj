@@ -120,28 +120,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Category.cpp" />
     <ClCompile Include="Categoría.cpp" />
+    <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Entrada.cpp" />
+    <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MenuMain.cpp" />
+    <ClCompile Include="Output.cpp" />
+    <ClCompile Include="Product.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="Salida.cpp" />
+    <ClCompile Include="User.cpp" />
     <ClCompile Include="Usuario.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Category.h" />
     <ClInclude Include="Categoría.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Connection.h" />
     <ClInclude Include="Entrada.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MenuMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Output.h" />
+    <ClInclude Include="Product.h" />
     <ClInclude Include="Producto.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -151,6 +164,7 @@
     <ClInclude Include="Salida.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="User.h" />
     <ClInclude Include="Usuario.h">
       <FileType>CppForm</FileType>
     </ClInclude>
