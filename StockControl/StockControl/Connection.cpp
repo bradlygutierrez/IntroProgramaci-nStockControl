@@ -226,3 +226,130 @@ bool DatabaseManager::EditCategory(int categoryID, String^ productDescription, S
         CloseConnection();
     }
 }
+
+//User Functions
+
+DataTable^ DatabaseManager::SelectAllUsers()
+{
+    OpenConnection();
+    DataTable^ dataTable = gcnew DataTable();
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[User]";
+        SqlDataAdapter^ adapter = gcnew SqlDataAdapter(query, sqlConn);
+        adapter->Fill(dataTable);
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return dataTable;
+}
+
+DataTable^ DatabaseManager::SearchUsers(String^ searchQuery)
+{
+    OpenConnection();
+    DataTable^ dataTable = gcnew DataTable();
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[User] WHERE Username LIKE '%' + @search + '%' OR Useremail LIKE '%' + @search + '%'";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@search", searchQuery);
+
+        SqlDataAdapter^ adapter = gcnew SqlDataAdapter(command);
+        adapter->Fill(dataTable);
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return dataTable;
+}
+
+User^ DatabaseManager::getUserByID(int userID)
+{
+    OpenConnection();
+    User^ user = nullptr;
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[User] WHERE UserID = @userID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@userID", userID);
+
+        SqlDataReader^ reader = command->ExecuteReader();
+        if (reader->Read()) {
+            int id = Convert::ToInt32(reader["UserID"]);
+            String^ username = safe_cast<String^>(reader["Username"]);
+            String^ useremail = safe_cast<String^>(reader["Useremail"]);
+            String^ password = safe_cast<String^>(reader["Userpassword"]);
+            user = gcnew User(id, username, useremail, password);
+        }
+
+        reader->Close();
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return user;
+}
+
+bool DatabaseManager::DeleteUser(int userID)
+{
+    OpenConnection();
+
+    try {
+        String^ query = "DELETE FROM [BDStock].[dbo].[User] WHERE UserID = @userID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@userID", userID);
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("User not found or failed to delete.", "Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
+}
+
+bool DatabaseManager::EditUser(int userID, String^ useremail, String^ username, String^ userpassword)
+{
+    OpenConnection();
+
+    try {
+        String^ query = "UPDATE [User] SET Username = @Username, Useremail = @Useremail, Userpassword = @Userpassword WHERE UserID = @UserID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@UserID", userID);
+        command->Parameters->AddWithValue("@Useremail", useremail);
+        command->Parameters->AddWithValue("@Username", username);
+        command->Parameters->AddWithValue("@Userpassword", userpassword);
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("User not found or failed to update.", "Edit Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
+}

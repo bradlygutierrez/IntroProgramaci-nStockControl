@@ -22,7 +22,14 @@ public:
     bool DeleteCategory(int categoryID);
     bool CreateNewCategory(String^ productDescription, String^ productType, String^ productSize);
     bool EditCategory(int categoryID, String^ productDescription, String^ productType, String^ productSize);
+    
+    //User functions
 
+    DataTable^ SelectAllUsers();
+    DataTable^ SearchUsers(String^ searchQuery);
+    User^ getUserByID(int userID);
+    bool DeleteUser(int userID);
+    bool EditUser(int userID, String^ useremail, String^ username, String^ userpassword);
 private:
     String^ connString;
     SqlConnection^ sqlConn;
