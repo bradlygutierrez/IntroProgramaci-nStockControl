@@ -1,6 +1,8 @@
 #pragma once
 #include "User.h"
-#include "Category.h" 
+#include "Category.h"
+#include "Output.h"
+#include "Input.h"
 
 using namespace System;
 using namespace System::Data;
@@ -30,6 +32,20 @@ public:
     User^ getUserByID(int userID);
     bool DeleteUser(int userID);
     bool EditUser(int userID, String^ useremail, String^ username, String^ userpassword);
+
+    DataTable^ SelectAllOutputs();
+    DataTable^ SearchOutputs(String^ searchQuery);
+    Output^ GetOutputById(int outputId);
+    bool DeleteOutput(int outputID);
+    DataTable^ SelectAllProducts();
+    bool CreateNewOutput(DateTime outputDate, double outputPrice, int outputQuantity, int productID, int userID);
+    DataTable^ SelectAllInputs();
+    DataTable^ SearchInputs(String^ searchQuery);
+    Input^ GetInputById(int inputId);
+    bool DeleteInput(int inputID);
+    bool CreateNewInput(DateTime inputDate, double inputPrice, int inputQuantity, int productID, int userID);
+    int GetProductIDByName(String^ productName);
+    int GetUserIDByName(String^ userName);
 private:
     String^ connString;
     SqlConnection^ sqlConn;
