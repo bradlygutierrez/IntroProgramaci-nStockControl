@@ -1,5 +1,10 @@
-﻿  Categoría.cpp
-  Login.cpp
+﻿  Login.cpp
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Usuario.h(392,5): warning C4102: 'MessageBox': unreferenced label
+  (compiling source file 'Login.cpp')
+  
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Usuario.h(392,16): warning C4102: 'Show': unreferenced label
+  (compiling source file 'Login.cpp')
+  
 D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Login.h(172,20): warning C4677: 'user': signature of non-private member contains assembly private type 'User'
   (compiling source file 'Login.cpp')
   D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\User.h(5,11):
@@ -9,7 +14,20 @@ D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProg
   (compiling source file 'Login.cpp')
   
   MenuMain.cpp
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Usuario.h(392,5): warning C4102: 'MessageBox': unreferenced label
+  (compiling source file 'MenuMain.cpp')
+  
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Usuario.h(392,16): warning C4102: 'Show': unreferenced label
+  (compiling source file 'MenuMain.cpp')
+  
+  Producto.cpp
   Register.cpp
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Usuario.h(392,5): warning C4102: 'MessageBox': unreferenced label
+  (compiling source file 'Register.cpp')
+  
+D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\StockControl\Usuario.h(392,16): warning C4102: 'Show': unreferenced label
+  (compiling source file 'Register.cpp')
+  
   Generating Code...
   Category.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   StockControl.vcxproj -> D:\Backup\Escritorio\UNICIT\Primer semestre\ProyectoNuevoProgramación\IntroProgramaci-nStockControl\StockControl\x64\Debug\StockControl.exe

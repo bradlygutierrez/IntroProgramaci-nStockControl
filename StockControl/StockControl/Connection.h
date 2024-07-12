@@ -3,6 +3,7 @@
 #include "Category.h"
 #include "Output.h"
 #include "Input.h"
+#include "Product.h"
 
 using namespace System;
 using namespace System::Data;
@@ -33,6 +34,8 @@ public:
     bool DeleteUser(int userID);
     bool EditUser(int userID, String^ useremail, String^ username, String^ userpassword);
 
+    //Output and Input Functions
+    
     DataTable^ SelectAllOutputs();
     DataTable^ SearchOutputs(String^ searchQuery);
     Output^ GetOutputById(int outputId);
@@ -46,6 +49,17 @@ public:
     bool CreateNewInput(DateTime inputDate, double inputPrice, int inputQuantity, int productID, int userID);
     int GetProductIDByName(String^ productName);
     int GetUserIDByName(String^ userName);
+
+    //Products Functions 
+    //Product functions
+
+    bool CreateNewProduct(String^ productName, String^ productColor, double productPrice, int CategoryID, int productQuantity);
+    bool EditProduct(String^ productName, String^ productColor, double productPrice, int CategoryID, int productQuantity);
+    bool DeleteProduct(int productID);
+    DataTable^ SelectAllProductsModule();
+    DataTable^ SearchProductsModule (String^ searchQuery);
+    Product^ GetProductById(int productId);
+
 private:
     String^ connString;
     SqlConnection^ sqlConn;

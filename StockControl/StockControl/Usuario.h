@@ -176,6 +176,7 @@ namespace StockControl {
 			// 
 			// btnGuardar
 			// 
+			this->btnGuardar->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->btnGuardar->BackColor = System::Drawing::Color::Turquoise;
 			this->btnGuardar->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -542,7 +543,7 @@ namespace StockControl {
 				MessageBox::Show("User updated successfully.", "Edit Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 				// Refresh DataGridView after update
-				buttonSearch_Click(sender, e); // Call the search button click event to refresh data
+				buttonSearch_Click(sender, e); // Call the seaaarch button click event to refresh data
 			}
 			else {
 				MessageBox::Show("Failed to update user.", "Edit Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);

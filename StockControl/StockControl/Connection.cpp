@@ -669,3 +669,159 @@ int DatabaseManager::GetUserIDByName(String^ userName) {
     }
 }
 
+// Product
+bool DatabaseManager::CreateNewProduct(String^ productName, String^ productColor, double productPrice, int CategoryID, int productQuantity) {
+    OpenConnection();
+
+    try {
+        String^ query = "INSERT INTO [Product] (productName, productColor, productPrice, CategoryID, productQuantity) VALUES (@productname, @productcolor, @productprice, @CategoryID, @productquantity)";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@productname", productName);
+        command->Parameters->AddWithValue("@productcolor", productColor);
+        command->Parameters->AddWithValue("@productprice", productPrice);
+        command->Parameters->AddWithValue("@CategoryID", CategoryID);
+        command->Parameters->AddWithValue("@productquantity", productQuantity);
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("Failed to create product.", "Create Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
+}
+
+bool DatabaseManager::EditProduct(String^ productName, String^ productColor, double productPrice, int CategoryID, int productQuantity) {
+    OpenConnection();
+
+    try {
+        String^ query = "UPDATE [Product] SET productName = @productname, productColor = @productcolor, productPrice = @productprice, CategoryID = @CategoryID, productQuantity = @productquantity WHERE ProductID = @ProductID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@productname", productName);
+        command->Parameters->AddWithValue("@productcolor", productColor);
+        command->Parameters->AddWithValue("@productprice", productPrice);
+        command->Parameters->AddWithValue("@CategoryID", CategoryID);
+        command->Parameters->AddWithValue("@productquantity", productQuantity);
+
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("Product not found or failed to update.", "Edit Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
+}
+
+bool DatabaseManager::DeleteProduct(int ProductID) {
+    OpenConnection();
+
+    try {
+        String^ query = "DELETE FROM [BDStock].[dbo].[Product] WHERE ProductID = @ProductID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@LroductID", ProductID);
+
+        int rowsAffected = command->ExecuteNonQuery();
+        if (rowsAffected > 0) {
+            return true;
+        }
+        else {
+            MessageBox::Show("Product not found or failed to delete.", "Delete Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            return false;
+        }
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+        return false;
+    }
+    finally {
+        CloseConnection();
+    }
+}
+
+DataTable^ DatabaseManager::SelectAllProductsModule() {
+    OpenConnection();
+    DataTable^ dataTable = gcnew DataTable();
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[Product]";
+        SqlDataAdapter^ adapter = gcnew SqlDataAdapter(query, sqlConn);
+        adapter->Fill(dataTable);
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return dataTable;
+}
+
+DataTable^ DatabaseManager::SearchProductsModule(String^ searchQuery) {
+    OpenConnection();
+    DataTable^ dataTable = gcnew DataTable();
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[Product] WHERE Productname LIKE '%' + @search + '%' OR Productcolor LIKE '%' + @search + '%' OR Productprice LIKE '%' + @search + '%' OR CategoryID LIKE '%' + @search + '%' OR Productquantity LIKE '%' + @search + '%' ";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@search", searchQuery);
+
+        SqlDataAdapter^ adapter = gcnew SqlDataAdapter(command);
+        adapter->Fill(dataTable);
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return dataTable;
+}
+
+
+Product^ DatabaseManager::GetProductById(int ProductID) {
+    OpenConnection();
+    Product^ product = nullptr;
+
+    try {
+        String^ query = "SELECT * FROM [BDStock].[dbo].[Product] WHERE ProductID = @ProductID";
+        SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+        command->Parameters->AddWithValue("@ProductID", ProductID);
+
+        SqlDataReader^ reader = command->ExecuteReader();
+        if (reader->Read()) {
+            int id = Convert::ToInt32(reader["ProductID"]);
+            String^ name = safe_cast<String^>(reader["Productname"]);
+            String^ color = safe_cast<String^>(reader["Productcolor"]);
+            double price = Convert::ToDouble(reader["Productprice"]);
+            int cat = Convert::ToInt32(reader["CategoryID"]);
+            Category^ category = GetCategoryById(cat);
+            int quantity = Convert::ToInt32(reader["Productquantity"]);
+            product = gcnew Product(id, name, color, price, cat, quantity);
+        }
+
+        reader->Close();
+    }
+    catch (Exception^ e) {
+        MessageBox::Show("Failed to execute query.", "Query Execution Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+    }
+
+    CloseConnection();
+    return product;
+}

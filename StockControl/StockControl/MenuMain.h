@@ -60,8 +60,8 @@ namespace StockControl {
 	private: System::Windows::Forms::Panel^ panel8;
 	private: System::Windows::Forms::Button^ btnCategorías;
 
-	private: System::Windows::Forms::Panel^ panel6;
-	private: System::Windows::Forms::Button^ btnConfiguracion;
+
+
 
 	private: System::Windows::Forms::Panel^ panel7;
 	private: System::Windows::Forms::Button^ btnSalir;
@@ -97,8 +97,6 @@ namespace StockControl {
 			this->btnUsuarios = (gcnew System::Windows::Forms::Button());
 			this->panel8 = (gcnew System::Windows::Forms::Panel());
 			this->btnCategorías = (gcnew System::Windows::Forms::Button());
-			this->panel6 = (gcnew System::Windows::Forms::Panel());
-			this->btnConfiguracion = (gcnew System::Windows::Forms::Button());
 			this->panel7 = (gcnew System::Windows::Forms::Panel());
 			this->btnSalir = (gcnew System::Windows::Forms::Button());
 			this->mainPanel = (gcnew System::Windows::Forms::Panel());
@@ -110,7 +108,6 @@ namespace StockControl {
 			this->panel2->SuspendLayout();
 			this->panel3->SuspendLayout();
 			this->panel8->SuspendLayout();
-			this->panel6->SuspendLayout();
 			this->panel7->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -124,7 +121,6 @@ namespace StockControl {
 			this->sidebarContainer->Controls->Add(this->panel2);
 			this->sidebarContainer->Controls->Add(this->panel3);
 			this->sidebarContainer->Controls->Add(this->panel8);
-			this->sidebarContainer->Controls->Add(this->panel6);
 			this->sidebarContainer->Controls->Add(this->panel7);
 			this->sidebarContainer->Dock = System::Windows::Forms::DockStyle::Left;
 			this->sidebarContainer->Location = System::Drawing::Point(0, 0);
@@ -304,37 +300,10 @@ namespace StockControl {
 			this->btnCategorías->UseVisualStyleBackColor = true;
 			this->btnCategorías->Click += gcnew System::EventHandler(this, &MenuMain::btnCategorías_Click);
 			// 
-			// panel6
-			// 
-			this->panel6->Controls->Add(this->btnConfiguracion);
-			this->panel6->Location = System::Drawing::Point(3, 437);
-			this->panel6->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-			this->panel6->Name = L"panel6";
-			this->panel6->Size = System::Drawing::Size(228, 61);
-			this->panel6->TabIndex = 7;
-			// 
-			// btnConfiguracion
-			// 
-			this->btnConfiguracion->Dock = System::Windows::Forms::DockStyle::Left;
-			this->btnConfiguracion->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
-				static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
-			this->btnConfiguracion->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnConfiguracion->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnConfiguracion->ForeColor = System::Drawing::Color::White;
-			this->btnConfiguracion->Location = System::Drawing::Point(0, 0);
-			this->btnConfiguracion->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-			this->btnConfiguracion->Name = L"btnConfiguracion";
-			this->btnConfiguracion->Size = System::Drawing::Size(225, 61);
-			this->btnConfiguracion->TabIndex = 4;
-			this->btnConfiguracion->Text = L"Configuración";
-			this->btnConfiguracion->UseVisualStyleBackColor = true;
-			this->btnConfiguracion->Click += gcnew System::EventHandler(this, &MenuMain::btnConfiguracion_Click);
-			// 
 			// panel7
 			// 
 			this->panel7->Controls->Add(this->btnSalir);
-			this->panel7->Location = System::Drawing::Point(3, 506);
+			this->panel7->Location = System::Drawing::Point(3, 437);
 			this->panel7->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->panel7->Name = L"panel7";
 			this->panel7->Size = System::Drawing::Size(228, 61);
@@ -386,7 +355,6 @@ namespace StockControl {
 			this->panel2->ResumeLayout(false);
 			this->panel3->ResumeLayout(false);
 			this->panel8->ResumeLayout(false);
-			this->panel6->ResumeLayout(false);
 			this->panel7->ResumeLayout(false);
 			this->ResumeLayout(false);
 
